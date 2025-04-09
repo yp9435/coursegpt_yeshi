@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 0, 0, 0;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-rgb));
+  font-family: 'Press Start 2P', system-ui, sans-serif;
+}
+
+/* Grid Background */
+.bgGrid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, #dcdcdc 1px, transparent 1px),
+                    linear-gradient(to bottom, #dcdcdc 1px, transparent 1px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+/* NES.css custom styles */
+.nes-container {
+  margin-bottom: 1rem;
+}
+
+.nes-btn {
+  margin: 0.5rem;
+}
+
+/* Pixel art border */
+.pixel-border {
+  border-style: solid;
+  border-width: 4px;
+  border-color: #000;
+  border-radius: 0;
+  image-rendering: pixelated;
+}
+
+.pixel-shadow {
+  box-shadow: 5px 5px 0px #000;
+}
+
+/* Custom transitions */
+.pixel-transition {
+  transition: all 0.1s steps(5);
+}
+
+/* Custom button styles */
+.pixel-btn {
+  background-color: white;
+  color: black;
+  border: 4px solid #000;
+  padding: 0.5rem 1rem;
+  font-family: 'Press Start 2P', monospace;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.1s steps(2);
+}
+
+.pixel-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* Retro input styles */
+.pixel-input {
+  background-color: white;
+  border: 4px solid #000;
+  padding: 0.75rem;
+  font-family: 'Press Start 2P', monospace;
+  outline: none;
+}
+
+.pixel-input:focus {
+  border-color: #000;
+  box-shadow: 4px 4px 0 #000;
 }
