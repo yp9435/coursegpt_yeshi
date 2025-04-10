@@ -1,4 +1,5 @@
 # 🎓 CourseGPT – The AI-Powered Course Maker
+Deployed Site Link :- [coursegpt-yeshi.vercel.app](https://coursegpt-yeshi.vercel.app/))
 
 **CourseGPT**, its a fun little project I (Yeshaswi, aka [@yp9435](https://github.com/yp9435)) built as part of the **Kalvium Technical Round Interview**.
 
