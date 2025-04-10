@@ -1,7 +1,6 @@
 # 🎓 CourseGPT – The AI-Powered Course Maker
 
-Hey there! 👋  
-Welcome to **CourseGPT**, a fun little project I (Yeshaswi, aka [@yp9435](https://github.com/yp9435)) built as part of the **Kalvium Technical Round Interview**.
+**CourseGPT**, its a fun little project I (Yeshaswi, aka [@yp9435](https://github.com/yp9435)) built as part of the **Kalvium Technical Round Interview**.
 
 The idea?  
 Make course creation super quick and easy, with a bit of help from AI. Whether you’re building something educational, fun, or niche, CourseGPT helps you get it done fast. Just give it a topic, and boom, you’ve got a full course ready to go. I wanted to name it something different tho.
@@ -20,7 +19,8 @@ The app uses the **YouTube Data API** to find and add relevant videos for each c
 AI wrote something cringey and cheesy just like this ReadME? You can tweak chapter names, descriptions, and video links however you like. Had to edit this readme multiple times lol.
 
 ### 🎮 Retro UI
-Yup, the whole thing has a fun, old-school gaming look thanks to **NES.css** (really css styling i love it). 
+The whole thing has a fun, old-school gaming look thanks to **NES.css** (really cute css styling i love it). 
+
 ---
 
 ## 🛠️ Tech Stuff
@@ -68,8 +68,9 @@ Hi, I’m **Yeshaswi** , UG @ SRMIST 2026 , a student developer with a strong in
 
 You can check out more of my work here:  
 🌐 [yeshipopo.vercel.app](https://yeshipopo.vercel.app/)
+
 🔗 [GitHub](https://github.com/yp9435)  
-🔗 [LinkedIn](https://www.linkedin.com/in/yeshaswi)
+🔗 [LinkedIn](https://www.linkedin.com/in/yeshaswiprakash/)
 
 
 ## What’s Next?
