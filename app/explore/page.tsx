@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
 import { useToast } from "@/hooks/use-toast"
 import { collection, query, where, getDocs, orderBy } from "firebase/firestore"
 import { db } from "@/lib/firebase"
@@ -19,12 +18,11 @@ interface CourseData {
   duration: string
   noOfChapters: number
   status: string
-  createdAt: any
-  updatedAt: any
+  createdAt: Date
+  updatedAt: Date
 }
 
 export default function ExplorePage() {
-  const router = useRouter()
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(true)
   const [courses, setCourses] = useState<CourseData[]>([])

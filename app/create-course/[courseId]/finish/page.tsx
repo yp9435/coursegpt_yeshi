@@ -22,12 +22,12 @@ interface CourseData {
     chapterName: string
     about: string
     duration: string
-    content?: any[]
+    content?: string[]
     youtubeVideos?: string[]
   }[]
   status: string
-  createdAt: any
-  updatedAt: any
+  createdAt: Date
+  updatedAt: Date
 }
 
 export default function FinishCoursePage({
@@ -232,7 +232,7 @@ export default function FinishCoursePage({
         {!complete && (
           <div className="mb-8 rounded-md bg-yellow-100 p-4">
             <p className="text-yellow-800">
-              Some chapters are missing content. You can still publish your course, but it's recommended to complete all chapters first.
+              Some chapters are missing content. You can still publish your course, but it&apos;s recommended to complete all chapters first.
             </p>
             <button
               onClick={() => router.push(`/create-course/${params.courseId}/edit`)}

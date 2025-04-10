@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { ChevronLeft, ChevronRight, Home, BookOpen } from "lucide-react"
 
 interface Chapter {
@@ -24,7 +23,6 @@ interface CourseSidebarProps {
 }
 
 export function CourseSidebar({ course, activePage = "", activeChapter = -1 }: CourseSidebarProps) {
-  const router = useRouter()
   const [isCollapsed, setIsCollapsed] = useState(false)
 
   return (

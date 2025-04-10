@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
+import Image from 'next/image';
 
 export default function Home() {
   const { user } = useAuth();
@@ -106,7 +107,7 @@ export default function Home() {
 
             <div className="flex items-center justify-center">
               <div className="text-center">
-                <img
+                <Image
                   src="/cat.gif"
                   alt="Pixel art animation"
                   className="mx-auto mb-4"

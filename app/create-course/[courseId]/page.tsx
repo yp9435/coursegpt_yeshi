@@ -23,8 +23,8 @@ interface CourseStructure {
     duration: string
   }[]
   status: string
-  createdAt: any
-  updatedAt: any
+  createdAt: Date
+  updatedAt: Date
 }
 
 export default function CourseDetailsPage({

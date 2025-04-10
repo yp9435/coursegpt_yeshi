@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from "next/image";
+
 
 export default function SignIn() {
   const { user, signInWithGoogle, loading } = useAuth();
@@ -53,7 +55,7 @@ export default function SignIn() {
             <div className="mt-8 text-center">
             <div className="flex items-center justify-center">
               <div className="text-center">
-                <img
+                <Image
                   src="/cat.gif"
                   alt="Pixel art animation"
                   className="mx-auto mb-4"

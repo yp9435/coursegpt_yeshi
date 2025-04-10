@@ -32,8 +32,8 @@ interface CourseData {
     youtubeVideos?: string[]
   }[]
   status: string
-  createdAt: any
-  updatedAt: any
+  createdAt: Date
+  updatedAt: Date
 }
 
 export default function CoursePage({
@@ -161,7 +161,7 @@ export default function CoursePage({
               <p className="title">Course Overview</p>
               <p className="mb-4">{course.description}</p>
               <p className="mb-6">
-                This course contains {course.noOfChapters} chapters that will guide you through {course.topic}. It's
+                This course contains {course.noOfChapters} chapters that will guide you through {course.topic}. It&apos;s
                 designed for {course.level.toLowerCase()} level learners and will take approximately{" "}
                 {course.duration.toLowerCase()} to complete.
               </p>
@@ -176,7 +176,7 @@ export default function CoursePage({
 
           <div className="mt-8">
             <div className="nes-container is-rounded with-title">
-              <p className="title">What You'll Learn</p>
+              <p className="title">What You&apos;ll Learn</p>
               <ul className="space-y-2">
                 {course.chapters.map((chapter, index) => (
                   <li key={index} className="flex items-start">

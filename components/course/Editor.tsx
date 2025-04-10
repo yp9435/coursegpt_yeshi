@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { YoutubeEmbed } from "@/components/course/YoutubeEmbed"
+import Image from "next/image"
 
 interface Chapter {
   chapterName: string
@@ -26,7 +27,7 @@ export function Editor({ chapter, onUpdateChapter, onGenerateContent, onFetchYou
   const [activeTab, setActiveTab] = useState("details")
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0)
 
-  const handleChange = (field: keyof Chapter, value: any) => {
+  const handleChange = (field: keyof Chapter, value: string | string[] | undefined) => {
     onUpdateChapter({ ...chapter, [field]: value })
   }
 
@@ -187,7 +188,7 @@ export function Editor({ chapter, onUpdateChapter, onGenerateContent, onFetchYou
                       className={`cursor-pointer p-2 border rounded-md ${selectedVideoIndex === index ? "bg-gray-200" : ""}`}
                       onClick={() => setSelectedVideoIndex(index)}
                     >
-                      <img
+                      <Image
                         src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
                         alt={`Video thumbnail ${index + 1}`}
                         className="w-full rounded"

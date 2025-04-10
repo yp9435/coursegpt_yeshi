@@ -40,7 +40,7 @@ export function TopicForm({ topic, description, onTopicChange, onDescriptionChan
             placeholder="Provide a brief description of what students will learn in this course..."
             className="nes-textarea h-32"
           />
-          <p className="mt-1 text-xs text-gray-500">A good description helps students understand what they'll learn.</p>
+          <p className="mt-1 text-xs text-gray-500">A good description helps students understand what they&apos;ll learn.</p>
         </div>
       </div>
 

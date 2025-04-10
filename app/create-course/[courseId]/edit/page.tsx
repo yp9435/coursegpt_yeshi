@@ -32,8 +32,8 @@ interface CourseData {
   noOfChapters: number
   chapters: Chapter[]
   status: string
-  createdAt: any
-  updatedAt: any
+  createdAt: Date
+  updatedAt: Date
 }
 
 export default function EditCoursePage({

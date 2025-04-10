@@ -6,6 +6,7 @@ import { useAuth } from "@/hooks/useAuth"
 import { collection, query, where, getDocs, orderBy } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import Link from "next/link"
+import Image from "next/image";
 import { CourseCard } from "@/components/course/CourseCard"
 
 interface CourseData {
@@ -19,8 +20,8 @@ interface CourseData {
   duration: string
   noOfChapters: number
   status: string
-  createdAt: any
-  updatedAt: any
+  createdAt: Date
+  updatedAt: Date
 }
 
 export default function Dashboard() {
@@ -77,7 +78,7 @@ export default function Dashboard() {
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 py-4">
             {userData.photoURL && (
               <div className="w-16 h-16 overflow-hidden border-4 border-black">
-                <img
+                <Image
                   src={userData.photoURL || "/placeholder.svg"}
                   alt={userData.displayName || "User"}
                   className="w-full h-full object-cover"
@@ -137,7 +138,7 @@ export default function Dashboard() {
               <>
                 <i className="nes-icon is-large heart is-empty"></i>
                 <h3 className="text-base mt-4 mb-4">Your Courses</h3>
-                <p className="text-xs mb-6">You haven't created any courses yet.</p>
+                <p className="text-xs mb-6">You haven&apos;t created any courses yet.</p>
                 <button className="nes-btn is-disabled px-4 py-2 mt-2">View Inventory</button>
               </>
             )}

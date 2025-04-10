@@ -24,8 +24,8 @@ interface CourseData {
     duration: string
   }[]
   status: string
-  createdAt: any
-  updatedAt: any
+  createdAt: Date
+  updatedAt: Date
 }
 
 export default function CourseCompletePage({
@@ -115,7 +115,7 @@ export default function CourseCompletePage({
 
             <h1 className="mt-6 text-center text-2xl font-bold">Congratulations!</h1>
 
-            <p className="mt-4 text-center">You've completed the course:</p>
+            <p className="mt-4 text-center">You&apos;ve completed the course:</p>
 
             <h2 className="mt-2 text-center text-xl font-bold">{course.courseName}</h2>
 
@@ -132,7 +132,7 @@ export default function CourseCompletePage({
             </div>
 
             <p className="mt-8 text-center">
-              You've mastered {course.noOfChapters} chapters and gained valuable knowledge in {course.topic}.
+              You&apos;ve mastered {course.noOfChapters} chapters and gained valuable knowledge in {course.topic}.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">

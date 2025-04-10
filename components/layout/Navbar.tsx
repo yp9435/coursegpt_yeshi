@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Navbar() {
   const { user, signOut } = useAuth();
@@ -36,7 +37,7 @@ export default function Navbar() {
               <div className="flex items-center space-x-4">
                 <div className="border-4 border-black h-8 w-8 overflow-hidden">
                   {user.photoURL && (
-                    <img
+                    <Image
                       className="h-full w-full object-cover"
                       src={user.photoURL}
                       alt={user.displayName || "User profile"}
