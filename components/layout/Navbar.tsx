@@ -38,6 +38,8 @@ export default function Navbar() {
                 <div className="border-4 border-black h-8 w-8 overflow-hidden">
                   {user.photoURL && (
                     <Image
+                      width={20}
+                      height={20}
                       className="h-full w-full object-cover"
                       src={user.photoURL}
                       alt={user.displayName || "User profile"}

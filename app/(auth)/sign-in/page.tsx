@@ -56,6 +56,8 @@ export default function SignIn() {
             <div className="flex items-center justify-center">
               <div className="text-center">
                 <Image
+                  width={300}
+                  height={300}
                   src="/cat.gif"
                   alt="Pixel art animation"
                   className="mx-auto mb-4"

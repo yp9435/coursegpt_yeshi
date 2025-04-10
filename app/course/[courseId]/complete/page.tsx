@@ -31,18 +31,30 @@ interface CourseData {
 export default function CourseCompletePage({
   params,
 }: {
-  params: { courseId: string }
+  params: Promise<{ courseId: string }>
 }) {
   const router = useRouter()
   const { toast } = useToast()
   const { user } = useAuth()
   const [isLoading, setIsLoading] = useState(true)
   const [course, setCourse] = useState<CourseData | null>(null)
+  const [courseId, setCourseId] = useState<string | null>(null)
 
   useEffect(() => {
+    const resolveParams = async () => {
+      const resolvedParams = await params
+      setCourseId(resolvedParams.courseId)
+    }
+
+    resolveParams()
+  }, [params])
+
+  useEffect(() => {
+    if (!courseId) return
+
     const fetchCourse = async () => {
       try {
-        const courseRef = doc(db, "courses", params.courseId)
+        const courseRef = doc(db, "courses", courseId)
         const courseSnap = await getDoc(courseRef)
 
         if (courseSnap.exists()) {
@@ -79,7 +91,7 @@ export default function CourseCompletePage({
     }
 
     fetchCourse()
-  }, [params.courseId, router, toast, user])
+  }, [courseId, router, toast, user])
 
   if (isLoading) {
     return (
@@ -145,7 +157,7 @@ export default function CourseCompletePage({
               </button>
 
               <button
-                onClick={() => router.push(`/course/${params.courseId}`)}
+                onClick={() => courseId && router.push(`/course/${courseId}`)}
                 className="nes-btn is-primary flex items-center"
               >
                 <BookOpen className="mr-2 h-4 w-4" />

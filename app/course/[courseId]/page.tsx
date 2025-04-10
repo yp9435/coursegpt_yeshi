@@ -9,6 +9,7 @@ import { db } from "@/lib/firebase"
 import { CourseSidebar } from "@/components/course/CourseSidebar"
 import { CourseHeader } from "@/components/course/CourseHeader"
 import { Clock, BookOpen, Award } from "lucide-react"
+import { use } from "react"
 
 interface CourseData {
   id: string
@@ -36,11 +37,14 @@ interface CourseData {
   updatedAt: Date
 }
 
-export default function CoursePage({
-  params,
-}: {
-  params: { courseId: string }
-}) {
+interface CoursePageProps {
+  params: Promise<{ courseId: string }>
+}
+
+export default function CoursePage(props: CoursePageProps) {
+  const params = use(props.params)
+  const courseId = params.courseId
+  
   const router = useRouter()
   const { toast } = useToast()
   const { user } = useAuth()
@@ -50,7 +54,7 @@ export default function CoursePage({
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const courseRef = doc(db, "courses", params.courseId)
+        const courseRef = doc(db, "courses", courseId)
         const courseSnap = await getDoc(courseRef)
 
         if (courseSnap.exists()) {
@@ -87,10 +91,10 @@ export default function CoursePage({
     }
 
     fetchCourse()
-  }, [params.courseId, router, toast, user])
+  }, [courseId, router, toast, user])
 
   const handleStartCourse = () => {
-    router.push(`/course/${params.courseId}/chapters/0`)
+    router.push(`/course/${courseId}/chapters/0`)
   }
 
   if (isLoading) {
@@ -198,13 +202,13 @@ export default function CoursePage({
                 <p className="title">Course Management</p>
                 <div className="flex flex-wrap gap-4">
                   <button
-                    onClick={() => router.push(`/create-course/${params.courseId}/edit`)}
+                    onClick={() => router.push(`/create-course/${courseId}/edit`)}
                     className="nes-btn"
                   >
                     Edit Course
                   </button>
                   <button
-                    onClick={() => router.push(`/create-course/${params.courseId}`)}
+                    onClick={() => router.push(`/create-course/${courseId}`)}
                     className="nes-btn is-primary"
                   >
                     Course Dashboard

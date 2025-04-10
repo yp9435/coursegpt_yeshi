@@ -79,6 +79,8 @@ export default function Dashboard() {
             {userData.photoURL && (
               <div className="w-16 h-16 overflow-hidden border-4 border-black">
                 <Image
+                  width={20}
+                  height={20}
                   src={userData.photoURL || "/placeholder.svg"}
                   alt={userData.displayName || "User"}
                   className="w-full h-full object-cover"

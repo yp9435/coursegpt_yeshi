@@ -2,8 +2,11 @@ import { type NextRequest, NextResponse } from "next/server"
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 
-export async function GET(request: NextRequest, { params }: { params: { courseId: string } }) {
-  const courseId = params.courseId
+export async function GET(
+  request: NextRequest, 
+  { params }: { params: Promise<{ courseId: string }> }
+) {
+  const { courseId } = await params
 
   try {
     const courseRef = doc(db, "courses", courseId)
@@ -23,8 +26,11 @@ export async function GET(request: NextRequest, { params }: { params: { courseId
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { courseId: string } }) {
-  const courseId = params.courseId
+export async function PUT(
+  request: NextRequest, 
+  { params }: { params: Promise<{ courseId: string }> }
+) {
+  const { courseId } = await params
   const body = await request.json()
 
   try {

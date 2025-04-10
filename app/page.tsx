@@ -106,13 +106,15 @@ export default function Home() {
             </div>
 
             <div className="flex items-center justify-center">
-              <div className="text-center">
+                <div className="text-center">
                 <Image
                   src="/cat.gif"
                   alt="Pixel art animation"
+                  width={300}
+                  height={300}
                   className="mx-auto mb-4"
                 />
-              </div>
+                </div>
             </div>
           </div>
         </div>

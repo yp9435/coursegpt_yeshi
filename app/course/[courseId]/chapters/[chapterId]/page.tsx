@@ -40,7 +40,7 @@ interface CourseData {
 export default function ChapterPage({
   params,
 }: {
-  params: { courseId: string; chapterId: string }
+  params: Promise<{ courseId: string; chapterId: string }>
 }) {
   const router = useRouter()
   const { toast } = useToast()
@@ -48,13 +48,25 @@ export default function ChapterPage({
   const [isLoading, setIsLoading] = useState(true)
   const [course, setCourse] = useState<CourseData | null>(null)
   const [activeVideoIndex, setActiveVideoIndex] = useState(0)
-
-  const chapterIndex = Number.parseInt(params.chapterId)
+  const [chapterIndex, setChapterIndex] = useState<number | null>(null)
+  const [courseId, setCourseId] = useState<string | null>(null)
 
   useEffect(() => {
+    const resolveParams = async () => {
+      const resolvedParams = await params
+      setCourseId(resolvedParams.courseId)
+      setChapterIndex(Number.parseInt(resolvedParams.chapterId))
+    }
+
+    resolveParams()
+  }, [params])
+
+  useEffect(() => {
+    if (!courseId) return
+
     const fetchCourse = async () => {
       try {
-        const courseRef = doc(db, "courses", params.courseId)
+        const courseRef = doc(db, "courses", courseId)
         const courseSnap = await getDoc(courseRef)
 
         if (courseSnap.exists()) {
@@ -90,43 +102,32 @@ export default function ChapterPage({
     }
 
     fetchCourse()
-  }, [params.courseId, router, toast, user])
+  }, [courseId, router, toast, user])
 
   const handlePreviousChapter = () => {
+    if (!courseId || chapterIndex === null) return
+    
     if (chapterIndex > 0) {
-      router.push(`/course/${params.courseId}/chapters/${chapterIndex - 1}`)
+      router.push(`/course/${courseId}/chapters/${chapterIndex - 1}`)
     } else {
-      router.push(`/course/${params.courseId}`)
+      router.push(`/course/${courseId}`)
     }
   }
 
   const handleNextChapter = () => {
+    if (!courseId || chapterIndex === null || !course) return
+    
     if (course && chapterIndex < course.chapters.length - 1) {
-      router.push(`/course/${params.courseId}/chapters/${chapterIndex + 1}`)
+      router.push(`/course/${courseId}/chapters/${chapterIndex + 1}`)
     } else if (course) {
-      router.push(`/course/${params.courseId}/complete`)
+      router.push(`/course/${courseId}/complete`)
     }
   }
 
-  if (isLoading) {
+  if (isLoading || chapterIndex === null || !course) {
     return (
       <div className="flex h-screen items-center justify-center bg-white text-black">
         <div className="nes-text is-primary">Loading chapter...</div>
-      </div>
-    )
-  }
-
-  if (!course) {
-    return (
-      <div className="nes-container is-rounded with-title bg-white text-black">
-        <p className="title">Error</p>
-        <p>Course not found. Please try exploring other courses.</p>
-        <button
-          onClick={() => router.push("/explore")}
-          className="nes-btn is-primary mt-4"
-        >
-          Explore Courses
-        </button>
       </div>
     )
   }
@@ -137,7 +138,7 @@ export default function ChapterPage({
         <p className="title">Error</p>
         <p>Chapter not found. Please select a valid chapter.</p>
         <button
-          onClick={() => router.push(`/course/${params.courseId}`)}
+          onClick={() => courseId && router.push(`/course/${courseId}`)}
           className="nes-btn is-primary mt-4"
         >
           Back to Course

@@ -189,6 +189,8 @@ export function Editor({ chapter, onUpdateChapter, onGenerateContent, onFetchYou
                       onClick={() => setSelectedVideoIndex(index)}
                     >
                       <Image
+                        width={500}
+                        height={300}
                         src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
                         alt={`Video thumbnail ${index + 1}`}
                         className="w-full rounded"

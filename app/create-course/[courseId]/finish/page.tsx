@@ -1,151 +1,154 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import { useToast } from "@/hooks/use-toast"
-import { useAuth } from "@/hooks/useAuth"
-import { Check, AlertTriangle } from "lucide-react"
-import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore"
-import { db } from "@/lib/firebase"
+import { use, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
+import { Check, AlertTriangle } from "lucide-react";
+import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 interface CourseData {
-  id: string
-  userId: string
-  courseName: string
-  description: string
-  category: string
-  topic: string
-  level: string
-  duration: string
-  noOfChapters: number
+  id: string;
+  userId: string;
+  courseName: string;
+  description: string;
+  category: string;
+  topic: string;
+  level: string;
+  duration: string;
+  noOfChapters: number;
   chapters: {
-    chapterName: string
-    about: string
-    duration: string
-    content?: string[]
-    youtubeVideos?: string[]
-  }[]
-  status: string
-  createdAt: Date
-  updatedAt: Date
+    chapterName: string;
+    about: string;
+    duration: string;
+    content?: string[];
+    youtubeVideos?: string[];
+  }[];
+  status: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export default function FinishCoursePage({
-  params,
-}: {
-  params: { courseId: string }
-}) {
-  const router = useRouter()
-  const { toast } = useToast()
-  const { user } = useAuth()
-  const [isLoading, setIsLoading] = useState(true)
-  const [isPublishing, setIsPublishing] = useState(false)
-  const [course, setCourse] = useState<CourseData | null>(null)
+interface FinishCoursePageProps {
+  params: Promise<{ courseId: string }>;
+}
+
+export default function FinishCoursePage(props: FinishCoursePageProps) {
+  const params = use(props.params); // Unwrap the params Promise
+  const courseId = params.courseId; // Access the courseId
+  const router = useRouter();
+  const { toast } = useToast();
+  const { user } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [course, setCourse] = useState<CourseData | null>(null);
 
   useEffect(() => {
     const fetchCourse = async () => {
       if (!user) {
-        router.push("/sign-in")
-        return
+        router.push("/sign-in");
+        return;
       }
 
       try {
-        const courseRef = doc(db, "courses", params.courseId)
-        const courseSnap = await getDoc(courseRef)
+        const courseRef = doc(db, "courses", courseId);
+        const courseSnap = await getDoc(courseRef);
 
         if (courseSnap.exists()) {
-          const courseData = courseSnap.data() as CourseData
+          const courseData = courseSnap.data() as CourseData;
 
           if (courseData.userId !== user.uid) {
             toast({
               title: "Access denied",
               description: "You don't have permission to publish this course",
               variant: "destructive",
-            })
-            router.push("/dashboard")
-            return
+            });
+            router.push("/dashboard");
+            return;
           }
 
-          setCourse({ ...courseData, id: courseSnap.id })
+          setCourse({ ...courseData, id: courseSnap.id });
         } else {
           toast({
             title: "Course not found",
             description: "The requested course could not be found",
             variant: "destructive",
-          })
+          });
         }
       } catch (error) {
-        console.error("Error fetching course:", error)
+        console.error("Error fetching course:", error);
         toast({
           title: "Error loading course",
           description: "Please try again later",
           variant: "destructive",
-        })
+        });
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
+    };
 
-    fetchCourse()
-  }, [params.courseId, router, toast, user])
+    fetchCourse();
+  }, [courseId, router, toast, user]);
 
   const getCompletionStatus = () => {
-    if (!course) return { complete: false, chaptersWithContent: 0, chaptersWithVideos: 0 }
+    if (!course) return { complete: false, chaptersWithContent: 0, chaptersWithVideos: 0 };
 
     const chaptersWithContent = course.chapters.filter(
-      (chapter) => chapter.content && chapter.content.length > 0,
-    ).length
+      (chapter) => chapter.content && chapter.content.length > 0
+    ).length;
 
     const chaptersWithVideos = course.chapters.filter(
-      (chapter) => chapter.youtubeVideos && chapter.youtubeVideos.length > 0,
-    ).length
+      (chapter) => chapter.youtubeVideos && chapter.youtubeVideos.length > 0
+    ).length;
 
-    const complete = chaptersWithContent === course.noOfChapters
+    const complete = chaptersWithContent === course.noOfChapters;
 
     return {
       complete,
       chaptersWithContent,
       chaptersWithVideos,
-    }
-  }
+    };
+  };
 
   const handlePublishCourse = async () => {
-    if (!course || !user) return
+    if (!course || !user) return;
 
     try {
-      setIsPublishing(true)
+      setIsPublishing(true);
 
-      const courseRef = doc(db, "courses", params.courseId)
+      const courseRef = doc(db, "courses", courseId);
 
       await updateDoc(courseRef, {
         status: "published",
+        publishedAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
-      })
+      });
 
       toast({
         title: "Course published successfully!",
-        description: "Your course is now available to users.",
-      })
+        description: "Your course is now live.",
+      });
 
-      router.push(`/course/${params.courseId}`)
+      router.push(`/dashboard`);
     } catch (error) {
-      console.error("Error publishing course:", error)
+      console.error("Error publishing course:", error);
       toast({
         title: "Error publishing course",
-        description: "Please try again later",
+        description: "Please try again later.",
         variant: "destructive",
-      })
+      });
     } finally {
-      setIsPublishing(false)
+      setIsPublishing(false);
     }
-  }
+  };
 
   if (isLoading) {
     return (
       <div className="flex h-96 items-center justify-center">
         <div className="nes-text is-primary">Loading course details...</div>
       </div>
-    )
+    );
   }
 
   if (!course) {
@@ -160,15 +163,18 @@ export default function FinishCoursePage({
           Create New Course
         </button>
       </div>
-    )
+    );
   }
 
-  const { complete, chaptersWithContent, chaptersWithVideos } = getCompletionStatus()
+  const { complete, chaptersWithContent, chaptersWithVideos } = getCompletionStatus();
 
   return (
     <div className="mx-auto max-w-4xl p-4">
       <div className="nes-container with-title is-rounded">
-        <p className="title">Finish & Publish Course</p>
+        <p className="title">Finish Course</p>
+        <p className="mb-4">
+          You&apos;re almost done! Review your course and publish it when you&apos;re ready.
+        </p>
 
         <div className="mb-8">
           <h2 className="mb-4 text-xl font-bold">{course.courseName}</h2>
@@ -235,7 +241,7 @@ export default function FinishCoursePage({
               Some chapters are missing content. You can still publish your course, but it&apos;s recommended to complete all chapters first.
             </p>
             <button
-              onClick={() => router.push(`/create-course/${params.courseId}/edit`)}
+              onClick={() => router.push(`/create-course/${courseId}/edit`)}
               className="nes-btn is-warning mt-4"
             >
               Go Back to Edit
@@ -245,7 +251,7 @@ export default function FinishCoursePage({
 
         <div className="mt-8 flex justify-between">
           <button
-            onClick={() => router.push(`/create-course/${params.courseId}`)}
+            onClick={() => router.push(`/create-course/${courseId}`)}
             className="nes-btn"
           >
             Back to Preview
@@ -260,5 +266,5 @@ export default function FinishCoursePage({
         </div>
       </div>
     </div>
-  )
+  );
 }
