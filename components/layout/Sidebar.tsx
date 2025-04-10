@@ -12,9 +12,8 @@ export default function Sidebar() {
 
   const navItems = [
     { name: 'Dashboard', href: '/dashboard'},
-    { name: 'My Courses', href: '/dashboard/courses'},
     { name: 'Create Course', href: '/create-course'},
-    { name: 'Settings', href: '/dashboard/settings' }
+    { name: 'Explore', href: '/explore' }
   ];
 
   return (
@@ -40,7 +39,7 @@ export default function Sidebar() {
             ))}
           </ul>
         </div>
-    </div>
+      </div>
     </aside>
   );
 }

@@ -7,27 +7,28 @@ import { useState } from 'react';
 export default function Navbar() {
   const { user, signOut } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
-
+  
   return (
     <nav className="bg-white border-b-4 border-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <span className="text-xl font-bold">CourseGPT</span>
+              <i className="snes-jp-logo mr-4"></i>
+              <span className="text-xl text-black font-bold">CourseGPT</span>
             </Link>
           </div>
           
           <div className="hidden md:flex md:items-center md:space-x-6">
-            <Link 
-              href="/dashboard" 
-              className="hover:opacity-70 pixel-transition"
+            <Link
+              href="/dashboard"
+              className="text-black hover:opacity-70 pixel-transition"
             >
               Dashboard
             </Link>
-            <Link 
-              href="/create-course" 
-              className="hover:opacity-70 pixel-transition"
+            <Link
+              href="/create-course"
+              className="text-black hover:opacity-70 pixel-transition"
             >
               Create Course
             </Link>
@@ -62,9 +63,8 @@ export default function Navbar() {
             )}
           </div>
           
-          {/* Mobile menu button */}
           <div className="flex items-center md:hidden">
-            <button 
+            <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="px-2"
             >
@@ -74,20 +74,19 @@ export default function Navbar() {
         </div>
       </div>
       
-      {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden border-t-4 border-black">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link 
-              href="/dashboard" 
-              className="block px-3 py-2 text-sm hover:opacity-70 pixel-transition"
+            <Link
+              href="/dashboard"
+              className="block text-black px-3 py-2 text-sm hover:opacity-70 pixel-transition"
               onClick={() => setMenuOpen(false)}
             >
               Dashboard
             </Link>
-            <Link 
-              href="/create-course" 
-              className="block px-3 py-2 text-sm hover:opacity-70 pixel-transition"
+            <Link
+              href="/create-course"
+              className="block text-black px-3 py-2 text-sm hover:opacity-70 pixel-transition"
               onClick={() => setMenuOpen(false)}
             >
               Create Course

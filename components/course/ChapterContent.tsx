@@ -1,0 +1,71 @@
+"use client"
+
+import { useState } from "react"
+
+interface ContentSection {
+  title: string
+  explanation: string
+  codeExample?: string
+}
+
+interface ChapterContentProps {
+  content: ContentSection[]
+}
+
+export function ChapterContent({ content }: ChapterContentProps) {
+  const [activeTab, setActiveTab] = useState("content")
+
+  return (
+    <div className="nes-container is-rounded with-title">
+      <p className="title">Chapter Content</p>
+
+      <div className="mb-4 flex gap-2">
+        <button
+          className={`nes-btn ${activeTab === "content" ? "is-primary" : ""}`}
+          onClick={() => setActiveTab("content")}
+        >
+          Content
+        </button>
+        <button
+          className={`nes-btn ${activeTab === "notes" ? "is-primary" : ""}`}
+          onClick={() => setActiveTab("notes")}
+        >
+          Notes
+        </button>
+      </div>
+
+      {activeTab === "content" && (
+        <div className="space-y-8">
+          {content.map((section, index) => (
+            <div key={index} className="border-b border-gray-300 pb-6 last:border-0">
+              <h3 className="mb-4 text-lg font-bold">{section.title}</h3>
+              <div className="mb-4 whitespace-pre-line">{section.explanation}</div>
+
+              {section.codeExample && (
+                <div className="mt-4">
+                  <h4 className="mb-2 text-sm font-bold">Code Example:</h4>
+                  <pre className="nes-container is-dark overflow-x-auto p-4">
+                    <code className="text-sm">{section.codeExample}</code>
+                  </pre>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {activeTab === "notes" && (
+        <div className="nes-container is-rounded">
+          <h3 className="mb-4 text-lg font-bold">Your Notes</h3>
+          <textarea
+            className="nes-textarea h-64 w-full"
+            placeholder="Take notes here..."
+          ></textarea>
+          <div className="mt-4 text-right">
+            <button className="nes-btn is-primary">Save Notes</button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

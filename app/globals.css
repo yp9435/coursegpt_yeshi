@@ -21,22 +21,24 @@ body {
 /* Grid Background */
 .bgGrid {
   background-size: 40px 40px;
-  background-image: linear-gradient(to right, #dcdcdc 1px, transparent 1px),
-                    linear-gradient(to bottom, #dcdcdc 1px, transparent 1px);
-  position: absolute;
+  background-image: 
+    linear-gradient(to right, #dcdcdc 1px, transparent 1px),
+    linear-gradient(to bottom, #dcdcdc 1px, transparent 1px);
+  position: fixed; 
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; 
+  pointer-events: none; 
 }
+
 
 .content {
   position: relative;
   z-index: 2;
 }
 
-/* NES.css custom styles */
 .nes-container {
   margin-bottom: 1rem;
 }
@@ -45,7 +47,6 @@ body {
   margin: 0.5rem;
 }
 
-/* Pixel art border */
 .pixel-border {
   border-style: solid;
   border-width: 4px;
@@ -58,12 +59,10 @@ body {
   box-shadow: 5px 5px 0px #000;
 }
 
-/* Custom transitions */
 .pixel-transition {
   transition: all 0.1s steps(5);
 }
 
-/* Custom button styles */
 .pixel-btn {
   background-color: white;
   color: black;
@@ -85,7 +84,6 @@ body {
   box-shadow: 2px 2px 0 #000;
 }
 
-/* Retro input styles */
 .pixel-input {
   background-color: white;
   border: 4px solid #000;

@@ -14,7 +14,6 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
     }
   }, [user, loading, router]);
 
-  // Show loading state
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -23,11 +22,9 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
     );
   }
 
-  // If not authenticated and not loading, don't render children (will redirect)
   if (!user && !loading) {
     return null;
   }
 
-  // User is authenticated, render the protected content
   return <>{children}</>;
 }

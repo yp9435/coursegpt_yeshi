@@ -10,7 +10,6 @@ export default function SignIn() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  // Redirect if already authenticated
   if (user && !loading) {
     router.push('/dashboard');
     return null;
@@ -34,12 +33,9 @@ export default function SignIn() {
           <h2 className="text-2xl mb-2">
             Sign in to CourseGPT
           </h2>
-          <p className="text-sm">
-            Create and manage AI-powered courses
-          </p>
         </div>
         
-        <div className="nes-container is-dark with-title pixel-shadow">
+        <div className="nes-container is-light with-title pixel-shadow">
           <p className="title">Login</p>
           
           <div className="py-4">
@@ -55,18 +51,17 @@ export default function SignIn() {
             </button>
             
             <div className="mt-8 text-center">
-              <i className="nes-octocat animate"></i>
+            <div className="flex items-center justify-center">
+              <div className="text-center">
+                <img
+                  src="/cat.gif"
+                  alt="Pixel art animation"
+                  className="mx-auto mb-4"
+                />
+              </div>
+            </div>
               <p className="mt-4 text-xs">
                 Press START to continue your adventure!
-              </p>
-            </div>
-            
-            <div className="text-center mt-8">
-              <p className="text-xs">
-                Don&apos;t have an account?{' '}
-                <Link href="/sign-up" className="underline hover:opacity-70 pixel-transition">
-                  Sign up
-                </Link>
               </p>
             </div>
           </div>
