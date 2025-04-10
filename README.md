@@ -20,7 +20,8 @@ The app uses the **YouTube Data API** to find and add relevant videos for each c
 AI wrote something cringey and cheesy just like this ReadME? You can tweak chapter names, descriptions, and video links however you like. Had to edit this readme multiple times lol.
 
 ### 🎮 Retro UI
-Yup, the whole thing has a fun, old-school gaming look thanks to **NES.css** (really css styling i love it). 
+The whole thing has a fun, old-school gaming look thanks to **NES.css** (really cute css styling i love it). 
+
 ---
 
 ## 🛠️ Tech Stuff
