@@ -1,7 +1,6 @@
 # 🎓 CourseGPT – The AI-Powered Course Maker
 
-Hey there! 👋  
-Welcome to **CourseGPT**, a fun little project I (Yeshaswi, aka [@yp9435](https://github.com/yp9435)) built as part of the **Kalvium Technical Round Interview**.
+**CourseGPT**, its a fun little project I (Yeshaswi, aka [@yp9435](https://github.com/yp9435)) built as part of the **Kalvium Technical Round Interview**.
 
 The idea?  
 Make course creation super quick and easy, with a bit of help from AI. Whether you’re building something educational, fun, or niche, CourseGPT helps you get it done fast. Just give it a topic, and boom, you’ve got a full course ready to go. I wanted to name it something different tho.
