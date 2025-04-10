@@ -69,8 +69,9 @@ Hi, I’m **Yeshaswi** , UG @ SRMIST 2026 , a student developer with a strong in
 
 You can check out more of my work here:  
 🌐 [yeshipopo.vercel.app](https://yeshipopo.vercel.app/)
+
 🔗 [GitHub](https://github.com/yp9435)  
-🔗 [LinkedIn](https://www.linkedin.com/in/yeshaswi)
+🔗 [LinkedIn](https://www.linkedin.com/in/yeshaswiprakash/)
 
 
 ## What’s Next?
