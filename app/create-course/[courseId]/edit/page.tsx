@@ -40,6 +40,60 @@ interface EditCoursePageProps {
   params: Promise<{ courseId: string }>;
 }
 
+/**
+ * EditCoursePage component is responsible for rendering the course editor page
+ * where users can edit the details and chapters of a specific course.
+ *
+ * @param props - The properties passed to the component.
+ *
+ * @remarks
+ * - This component fetches the course data from Firestore based on the `courseId` parameter.
+ * - It ensures that only the owner of the course can edit it.
+ * - Provides functionality to update chapters, generate content, and fetch YouTube videos for chapters.
+ * - Includes error handling and user feedback using toast notifications.
+ *
+ * @returns A JSX element representing the course editor page.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <EditCoursePage props={props} />
+ * ```
+ *
+ * @requires useAuth - Custom hook to get the authenticated user.
+ * @requires useToast - Custom hook to display toast notifications.
+ * @requires useRouter - Next.js router for navigation.
+ * @requires useState - React hook for managing component state.
+ * @requires useEffect - React hook for side effects.
+ * @requires Editor - A child component for editing individual chapters.
+ *
+ * @function handleChapterChange
+ * Updates the active chapter index when a chapter is selected.
+ *
+ * @function handleUpdateChapter
+ * Updates the content of a specific chapter in the course state.
+ *
+ * @function handleSaveCourse
+ * Saves the updated course data to Firestore.
+ *
+ * @function handleGenerateContent
+ * Generates content for a specific chapter using an API call.
+ *
+ * @function handleFetchYoutubeVideos
+ * Fetches YouTube video suggestions for a specific chapter using an API call.
+ *
+ * @function fetchCourse
+ * Fetches the course data from Firestore and validates user permissions.
+ *
+ * @state isLoading - Indicates whether the course data is being loaded.
+ * @state isSaving - Indicates whether the course data is being saved.
+ * @state course - The course data being edited.
+ * @state activeChapter - The index of the currently active chapter.
+ *
+ * @errorHandling
+ * - Redirects unauthorized users to the sign-in page.
+ * - Displays error messages for failed API calls or invalid course data.
+ */
 export default function EditCoursePage(props: EditCoursePageProps) {
   const params = use(props.params); // Unwrap the params Promise
   const courseId = params.courseId; // Access the courseId

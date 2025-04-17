@@ -6,6 +6,19 @@ interface CourseHeaderProps {
     duration: string
   }
   
+  /**
+   * Renders the header section of a course, displaying its title, description, 
+   * category, difficulty, and duration.
+   *
+   * @param {CourseHeaderProps} props - The properties for the CourseHeader component.
+   * @param {string} props.title - The title of the course.
+   * @param {string} props.description - A brief description of the course.
+   * @param {string} props.category - The category to which the course belongs.
+   * @param {string} props.difficulty - The difficulty level of the course.
+   * @param {string} props.duration - The estimated duration of the course.
+   * @returns {JSX.Element} The rendered CourseHeader component.
+   */
+  
   export function CourseHeader({ title, description, category, difficulty, duration }: CourseHeaderProps) {
     return (
       <div className="mb-6">

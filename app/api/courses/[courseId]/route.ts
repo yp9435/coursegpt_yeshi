@@ -26,6 +26,28 @@ export async function GET(
   }
 }
 
+/**
+ * Handles the HTTP PUT request to update a course in the database.
+ *
+ * @param request - The incoming HTTP request object of type `NextRequest`.
+ * @param context - An object containing route parameters, including `courseId`.
+ * @param context.params - A promise resolving to an object with the `courseId` string.
+ *
+ * @returns A `NextResponse` object containing the result of the update operation.
+ * 
+ * @throws Will return a JSON response with an appropriate HTTP status code in the following cases:
+ * - `404 Not Found`: If the course with the specified `courseId` does not exist.
+ * - `403 Forbidden`: If the `userId` in the request body does not match the `userId` of the course.
+ * - `500 Internal Server Error`: If an unexpected error occurs during the update process.
+ *
+ * The function performs the following steps:
+ * 1. Extracts the `courseId` from the route parameters.
+ * 2. Parses the request body as JSON.
+ * 3. Checks if the course exists in the database.
+ * 4. Verifies that the `userId` in the request body matches the `userId` of the course.
+ * 5. Updates the course document in the database with the provided data and sets the `updatedAt` timestamp.
+ * 6. Returns a success response with the `courseId` if the update is successful.
+ */
 export async function PUT(
   request: NextRequest, 
   { params }: { params: Promise<{ courseId: string }> }

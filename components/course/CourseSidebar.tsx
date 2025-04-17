@@ -22,6 +22,40 @@ interface CourseSidebarProps {
   activeChapter?: number
 }
 
+/**
+ * Renders a collapsible sidebar for a course, displaying navigation links
+ * for the course overview and its chapters. The sidebar can toggle between
+ * expanded and collapsed states.
+ *
+ * @param {CourseSidebarProps} props - The props for the component.
+ * @param {Course} props.course - The course object containing details such as chapters.
+ * @param {string} [props.activePage=""] - The currently active page identifier (e.g., "overview").
+ * @param {number} [props.activeChapter=-1] - The index of the currently active chapter.
+ *
+ * @returns {JSX.Element} The rendered CourseSidebar component.
+ *
+ * @remarks
+ * - When expanded, the sidebar displays the course overview link and a list of chapters.
+ * - When collapsed, the sidebar displays minimal icons for navigation.
+ * - Includes a toggle button to switch between expanded and collapsed states.
+ * - Provides a "Back to Dashboard" link at the bottom.
+ *
+ * @example
+ * ```tsx
+ * <CourseSidebar
+ *   course={{
+ *     id: "course-123",
+ *     chapters: [
+ *       { chapterName: "Introduction" },
+ *       { chapterName: "Advanced Topics" },
+ *     ],
+ *   }}
+ *   activePage="overview"
+ *   activeChapter={0}
+ * />
+ * ```
+ */
+
 export function CourseSidebar({ course, activePage = "", activeChapter = -1 }: CourseSidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(false)
 

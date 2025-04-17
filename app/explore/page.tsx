@@ -22,6 +22,50 @@ interface CourseData {
   updatedAt: Date
 }
 
+/**
+ * ExplorePage component allows users to browse and filter a list of AI-generated courses.
+ * 
+ * This page fetches courses from a Firestore database and provides filtering options
+ * such as search query, category, difficulty level, and duration. Users can reset filters
+ * to view all available courses. The component also handles loading and error states.
+ * 
+ * @component
+ * 
+ * @returns {JSX.Element} The ExplorePage component.
+ * 
+ * @remarks
+ * - Uses Firestore to fetch published courses.
+ * - Provides filtering options for better course discovery.
+ * - Displays a loading state while fetching data and an error toast if fetching fails.
+ * - Displays a message when no courses match the applied filters.
+ * 
+ * @dependencies
+ * - `useToast`: Custom hook for displaying toast notifications.
+ * - `useState`, `useEffect`: React hooks for managing state and side effects.
+ * - `query`, `collection`, `where`, `orderBy`, `getDocs`: Firestore functions for querying data.
+ * - `CourseCard`: Component for rendering individual course details.
+ * 
+ * @state
+ * - `isLoading` (`boolean`): Indicates whether the courses are being loaded.
+ * - `courses` (`CourseData[]`): List of all fetched courses.
+ * - `filteredCourses` (`CourseData[]`): List of courses after applying filters.
+ * - `searchQuery` (`string`): Search query for filtering courses.
+ * - `categoryFilter` (`string`): Selected category filter.
+ * - `difficultyFilter` (`string`): Selected difficulty level filter.
+ * - `durationFilter` (`string`): Selected duration filter.
+ * 
+ * @methods
+ * - `resetFilters`: Resets all filters to their default values.
+ * 
+ * @effects
+ * - Fetches courses from Firestore on component mount.
+ * - Updates filtered courses whenever filters or the course list change.
+ * 
+ * @example
+ * ```tsx
+ * <ExplorePage />
+ * ```
+ */
 export default function ExplorePage() {
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(true)

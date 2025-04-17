@@ -3,6 +3,23 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import { generateCourseContent } from "@/lib/gemini"
 
+/**
+ * Handles the POST request to generate a course structure based on user input.
+ *
+ * @param {NextRequest} request - The incoming HTTP request object.
+ * @returns {Promise<NextResponse>} A JSON response containing the generated course data or an error message.
+ *
+ * @throws {Error} Returns a 400 status if required fields are missing.
+ * @throws {Error} Returns a 500 status if there is an error parsing the generated course structure or any other server-side issue.
+ *
+ * The function performs the following steps:
+ * 1. Parses the request body to extract user input fields such as `userId`, `category`, `topic`, `description`, `difficulty`, `duration`, `includeYoutube`, and `chapterCount`.
+ * 2. Validates that required fields (`userId`, `category`, `topic`, `difficulty`, `duration`) are provided.
+ * 3. Constructs a prompt to generate a course structure using an external content generation function (`generateCourseContent`).
+ * 4. Parses the generated response to extract a JSON object representing the course structure.
+ * 5. Constructs a course data object and saves it to a Firestore database collection (`courses`).
+ * 6. Returns the saved course data along with its unique ID in the response.
+ */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()

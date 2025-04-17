@@ -18,6 +18,25 @@ interface CourseCardProps {
   course: CourseData
 }
 
+/**
+ * Renders a card component for displaying course information.
+ *
+ * @param {CourseCardProps} props - The props for the CourseCard component.
+ * @param {Object} props.course - The course object containing details to display.
+ * @param {string} props.course.category - The category of the course.
+ * @param {string} props.course.courseName - The name of the course.
+ * @param {string} props.course.description - A brief description of the course.
+ * @param {string} props.course.duration - The duration of the course.
+ * @param {number} props.course.noOfChapters - The number of chapters in the course.
+ * @param {string} props.course.level - The difficulty level of the course (e.g., Beginner, Intermediate, Advanced).
+ * @param {string} props.course.status - The status of the course (e.g., "draft").
+ * @param {string} props.course.id - The unique identifier for the course.
+ *
+ * @returns {JSX.Element} A styled card component displaying course details, including category, name, description,
+ * duration, number of chapters, level, and a status badge if the course is in draft mode. Includes a link to view
+ * the course details.
+ */
+
 export function CourseCard({ course }: CourseCardProps) {
   return (
     <div className="nes-container bg-white is-rounded with-title">

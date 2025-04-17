@@ -22,6 +22,50 @@ interface CourseData {
   chapterCount: number;
 }
 
+/**
+ * The `CreateCoursePage` component provides a multi-step wizard interface for creating a course.
+ * It allows users to select a category, specify a topic and description, and configure additional options
+ * such as difficulty, duration, chapter count, and whether to include YouTube videos.
+ *
+ * @component
+ *
+ * @returns {JSX.Element} The rendered course creation wizard.
+ *
+ * @remarks
+ * - The component uses `useRouter` for navigation and `useToast` for displaying notifications.
+ * - It requires user authentication via `useAuth` to create a course.
+ * - The wizard consists of three steps: Category, Topic, and Options.
+ * - The course data is submitted to the `/api/generateLesson` endpoint.
+ *
+ * @example
+ * ```tsx
+ * import CreateCoursePage from './create-course/page';
+ *
+ * function App() {
+ *   return <CreateCoursePage />;
+ * }
+ * ```
+ *
+ * @state
+ * - `step` (`STEPS`): Tracks the current step in the wizard.
+ * - `isLoading` (`boolean`): Indicates whether the course creation process is in progress.
+ * - `courseData` (`object`): Stores the course details entered by the user.
+ *
+ * @methods
+ * - `updateCourseData(data: Partial<CourseData>): void` - Updates the `courseData` state with partial data.
+ * - `handleNext(): void` - Advances to the next step in the wizard.
+ * - `handleBack(): void` - Returns to the previous step in the wizard.
+ * - `handleSubmit(): Promise<void>` - Submits the course data to the server and handles the response.
+ *
+ * @dependencies
+ * - `useRouter` from `next/router` for navigation.
+ * - `useToast` for displaying notifications.
+ * - `useAuth` for accessing the authenticated user.
+ *
+ * @styles
+ * - Uses NES.css classes for styling the wizard interface.
+ * - Includes conditional styling for active and completed steps.
+ */
 export default function CreateCoursePage() {
   const router = useRouter()
   const { toast } = useToast()

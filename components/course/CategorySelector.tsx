@@ -16,6 +16,34 @@ interface CategoryOption {
   icon: React.ElementType
 }
 
+/**
+ * A component that allows users to select a category for their course from a predefined list
+ * or specify a custom category if "Others" is selected.
+ *
+ * @param {CategorySelectorProps} props - The props for the `CategorySelector` component.
+ * @param {string} props.selectedCategory - The currently selected category ID.
+ * @param {string} props.customCategory - The value of the custom category input field.
+ * @param {(categoryId: string) => void} props.onSelectCategory - Callback function triggered when a category is selected.
+ * @param {(customCategory: string) => void} props.onCustomCategoryChange - Callback function triggered when the custom category input value changes.
+ *
+ * @returns {JSX.Element} The rendered `CategorySelector` component.
+ *
+ * @remarks
+ * - The component displays a grid of predefined categories, each with an icon and name.
+ * - When the "Others" category is selected, an input field is displayed for entering a custom category.
+ * - The selected category is visually highlighted, and the component provides a brief description
+ *   to guide users in selecting an appropriate category.
+ *
+ * @example
+ * ```tsx
+ * <CategorySelector
+ *   selectedCategory="Programming"
+ *   customCategory=""
+ *   onSelectCategory={(id) => console.log("Selected category:", id)}
+ *   onCustomCategoryChange={(value) => console.log("Custom category:", value)}
+ * />
+ * ```
+ */
 export function CategorySelector({
   selectedCategory,
   customCategory,

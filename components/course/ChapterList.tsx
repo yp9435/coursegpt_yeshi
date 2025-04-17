@@ -14,6 +14,22 @@ interface ChapterListProps {
   courseId: string
 }
 
+/**
+ * Component to render a list of chapters for a course.
+ *
+ * @param {ChapterListProps} props - The properties for the ChapterList component.
+ * @param {Array} props.chapters - An array of chapter objects to display.
+ * @param {string} props.courseId - The unique identifier for the course.
+ *
+ * Each chapter object in the `chapters` array should have the following structure:
+ * - `chapterName` (string): The name of the chapter.
+ * - `about` (string): A brief description of the chapter.
+ * - `duration` (string): The duration of the chapter.
+ *
+ * @returns {JSX.Element} A styled list of chapters, each with its name, description, duration, 
+ * and an "Edit Chapter" button linking to the edit page for the chapter.
+ */
+
 export function ChapterList({ chapters, courseId }: ChapterListProps) {
   return (
     <div className="space-y-4">

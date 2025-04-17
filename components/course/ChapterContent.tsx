@@ -12,6 +12,41 @@ interface ChapterContentProps {
   content: ContentSection[]
 }
 
+/**
+ * Component to display chapter content with a tabbed interface for "Content" and "Notes".
+ *
+ * @param {ChapterContentProps} props - The props for the component.
+ * @param {Array<{ title: string; explanation: string; codeExample?: string }>} props.content - 
+ * An array of sections representing the chapter content. Each section includes:
+ * - `title`: The title of the section.
+ * - `explanation`: The explanation or description of the section.
+ * - `codeExample` (optional): A code snippet related to the section.
+ *
+ * @returns {JSX.Element} A styled container with tabs for viewing chapter content and taking notes.
+ *
+ * @remarks
+ * - The "Content" tab displays the chapter sections, including titles, explanations, and optional code examples.
+ * - The "Notes" tab provides a textarea for users to take notes and a button to save them.
+ * - The component uses the NES.css library for styling.
+ *
+ * @example
+ * ```tsx
+ * const chapterContent = [
+ *   {
+ *     title: "Introduction to React",
+ *     explanation: "React is a JavaScript library for building user interfaces.",
+ *     codeExample: "const element = <h1>Hello, world!</h1>;"
+ *   },
+ *   {
+ *     title: "State and Props",
+ *     explanation: "State and props are core concepts in React.",
+ *   }
+ * ];
+ *
+ * <ChapterContent content={chapterContent} />
+ * ```
+ */
+
 export function ChapterContent({ content }: ChapterContentProps) {
   const [activeTab, setActiveTab] = useState("content")
 

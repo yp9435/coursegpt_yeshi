@@ -23,6 +23,45 @@ interface EditorProps {
   onFetchYoutubeVideos: () => void
 }
 
+/**
+ * The `Editor` component provides an interface for editing a chapter's details, content, and associated YouTube videos.
+ * It allows users to switch between three tabs: "details", "content", and "videos", each offering specific functionality.
+ *
+ * @param {EditorProps} props - The props for the `Editor` component.
+ * @param {Chapter} props.chapter - The current chapter data being edited.
+ * @param {(updatedChapter: Chapter) => void} props.onUpdateChapter - Callback function to update the chapter data.
+ * @param {() => void} props.onGenerateContent - Callback function to generate content for the chapter using AI.
+ * @param {() => void} props.onFetchYoutubeVideos - Callback function to fetch YouTube videos related to the chapter.
+ *
+ * @returns {JSX.Element} The rendered `Editor` component.
+ *
+ * ## Tabs:
+ * - **Details**: Allows editing the chapter's name, description, and duration.
+ * - **Content**: Displays and manages sections of the chapter, including title, explanation, and optional code examples.
+ * - **Videos**: Displays and manages YouTube videos associated with the chapter, including selecting and fetching videos.
+ *
+ * ## Features:
+ * - **Details Tab**:
+ *   - Edit chapter name, description, and duration.
+ * - **Content Tab**:
+ *   - Add, edit, or remove sections of the chapter.
+ *   - Regenerate content using AI.
+ * - **Videos Tab**:
+ *   - View and select a YouTube video.
+ *   - Fetch additional YouTube videos.
+ *
+ * ## State:
+ * - `activeTab` (`string`): Tracks the currently active tab ("details", "content", or "videos").
+ * - `selectedVideoIndex` (`number`): Tracks the index of the currently selected YouTube video.
+ *
+ * ## Methods:
+ * - `handleChange(field, value)`: Updates a specific field of the chapter.
+ * - `handleContentChange(index, field, value)`: Updates a specific field of a content section.
+ * - `addSection()`: Adds a new section to the chapter content.
+ * - `removeSection(index)`: Removes a section from the chapter content.
+ */
+
+
 export function Editor({ chapter, onUpdateChapter, onGenerateContent, onFetchYoutubeVideos }: EditorProps) {
   const [activeTab, setActiveTab] = useState("details")
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0)

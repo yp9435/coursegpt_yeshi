@@ -4,6 +4,41 @@ import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import Image from 'next/image';
 
+/**
+ * The `Home` component serves as the landing page for the CourseGPT application.
+ * It provides an overview of the platform's features and functionality, 
+ * along with navigation options based on the user's authentication status.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered Home page component.
+ *
+ * @description
+ * - Displays a header with the application logo and navigation links.
+ * - Shows a hero section with a brief introduction to CourseGPT.
+ * - Includes a guide section outlining the steps to use the platform.
+ * - Features a pixel art animation for visual appeal.
+ * - Contains a footer with a copyright notice and a link to the creator's LinkedIn profile.
+ *
+ * @remarks
+ * - The `useAuth` hook is used to determine the user's authentication status.
+ * - The `Link` component is used for navigation between pages.
+ * - The `Image` component is used to display a pixel art animation.
+ *
+ * @dependencies
+ * - `useAuth`: Custom hook to retrieve user authentication details.
+ * - `Link`: Next.js component for client-side navigation.
+ * - `Image`: Next.js component for optimized image rendering.
+ *
+ * @example
+ * ```tsx
+ * import Home from './page';
+ *
+ * export default function App() {
+ *   return <Home />;
+ * }
+ * ```
+ */
+
 export default function Home() {
   const { user } = useAuth();
 

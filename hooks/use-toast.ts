@@ -46,6 +46,35 @@ const addToRemoveQueue = (toastId: string) => {
   toastTimeouts.set(toastId, timeout)
 }
 
+/**
+ * Reducer function to manage the state of toast notifications.
+ *
+ * @param state - The current state of the toast notifications.
+ * @param action - The action to perform on the state.
+ * @returns The updated state after applying the action.
+ *
+ * @remarks
+ * This reducer handles the following action types:
+ * - `"ADD_TOAST"`: Adds a new toast to the state, ensuring the total number of toasts does not exceed the `TOAST_LIMIT`.
+ * - `"UPDATE_TOAST"`: Updates an existing toast in the state by matching its `id`.
+ * - `"DISMISS_TOAST"`: Marks a toast (or all toasts if no `toastId` is provided) as closed by setting `open` to `false`.
+ * - `"REMOVE_TOAST"`: Removes a toast (or all toasts if no `toastId` is provided) from the state.
+ *
+ * @example
+ * // Example usage of the reducer
+ * const newState = reducer(currentState, { type: "ADD_TOAST", toast: { id: "1", message: "Hello" } });
+ *
+ * @see ToastState - The shape of the toast state.
+ * @see ToastAction - The shape of the actions that can be dispatched.
+ * Why Use Toasts?
+Quick Feedback: Toasts provide instant feedback to users without interrupting their workflow.
+Non-Intrusive: They don’t block the user from interacting with the rest of the app.
+Customizable: You can style and configure them to fit your app’s design and behavior.
+
+A toast is a small, temporary notification that pops up on the screen to give feedback to the user. For example, when you save a file, submit a form, or encounter an error, a toast can appear to show a success message, warning, or error. It usually disappears automatically after a short time or when the user dismisses it.
+
+ */
+
 export const reducer = (state: ToastState, action: ToastAction): ToastState => {
   switch (action.type) {
     case "ADD_TOAST":

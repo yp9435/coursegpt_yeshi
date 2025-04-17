@@ -7,6 +7,20 @@ interface TopicFormProps {
   onDescriptionChange: (description: string) => void
 }
 
+/**
+ * A React component for rendering a form to input a course topic and description.
+ * This form allows users to specify the topic and optionally provide a description
+ * for their course. The provided information can be used to generate relevant content.
+ *
+ * @param {TopicFormProps} props - The props for the `TopicForm` component.
+ * @param {string} props.topic - The current value of the course topic.
+ * @param {string} props.description - The current value of the course description.
+ * @param {(value: string) => void} props.onTopicChange - Callback function to handle changes to the course topic.
+ * @param {(value: string) => void} props.onDescriptionChange - Callback function to handle changes to the course description.
+ *
+ * @returns {JSX.Element} The rendered `TopicForm` component.
+ */
+
 export function TopicForm({ topic, description, onTopicChange, onDescriptionChange }: TopicFormProps) {
   return (
     <div>

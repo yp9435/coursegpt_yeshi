@@ -5,6 +5,31 @@ import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
 import Image from 'next/image';
 
+/**
+ * Navbar component that provides navigation functionality for the application.
+ * 
+ * This component includes:
+ * - A logo and title linking to the home page.
+ * - Navigation links to the dashboard and course creation pages.
+ * - User authentication controls, including sign-in and sign-out options.
+ * - A responsive design with a collapsible menu for smaller screens.
+ * 
+ * @component
+ * @returns {JSX.Element} The rendered Navbar component.
+ * 
+ * @remarks
+ * - The component uses the `useAuth` hook to access the current user and sign-out functionality.
+ * - The `menuOpen` state is used to toggle the visibility of the mobile menu.
+ * - Tailwind CSS and NES.css classes are used for styling.
+ * 
+ * @dependencies
+ * - `useAuth`: Custom hook for authentication context.
+ * - `Link`: Next.js `Link` component for client-side navigation.
+ * - `Image`: Next.js `Image` component for optimized image rendering.
+ * 
+ * @example
+ * 
+ */
 export default function Navbar() {
   const { user, signOut } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);

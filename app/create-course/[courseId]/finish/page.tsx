@@ -34,6 +34,55 @@ interface FinishCoursePageProps {
   params: Promise<{ courseId: string }>;
 }
 
+/**
+ * FinishCoursePage component is responsible for rendering the final step of the course creation process.
+ * It allows users to review their course details, check completion status, and publish the course.
+ *
+ * @param {FinishCoursePageProps} props - The props for the FinishCoursePage component.
+ *
+ * @returns {JSX.Element} The rendered FinishCoursePage component.
+ *
+ * @remarks
+ * - This component fetches course details from Firestore based on the `courseId` parameter.
+ * - It ensures that only the course owner can access and publish the course.
+ * - Displays the course completion status, including chapters with content and YouTube videos.
+ * - Allows users to navigate back to edit the course or publish it.
+ *
+ * @example
+ * ```tsx
+ * <FinishCoursePage params={{ courseId: "12345" }} />
+ * ```
+ *
+ * @component
+ * @category Pages
+ *
+ * @requires useRouter - For navigation between pages.
+ * @requires useToast - For displaying toast notifications.
+ * @requires useAuth - For accessing the authenticated user.
+ * @requires useState - For managing local component state.
+ * @requires useEffect - For fetching course data on component mount.
+ *
+ * @function handlePublishCourse
+ * - Publishes the course by updating its status in Firestore.
+ * - Displays success or error messages using toast notifications.
+ *
+ * @function getCompletionStatus
+ * - Calculates the completion status of the course based on chapters with content and videos.
+ *
+ * @loadingState
+ * - Displays a loading indicator while fetching course details.
+ *
+ * @errorState
+ * - Displays an error message if the course is not found or the user is unauthorized.
+ *
+ * @completionStatus
+ * - Shows the number of chapters with content and videos.
+ * - Indicates whether the course is complete or incomplete.
+ *
+ * @publishButton
+ * - Disabled while the course is being published.
+ * - Allows publishing even if the course is incomplete, with a warning.
+ */
 export default function FinishCoursePage(props: FinishCoursePageProps) {
   const params = use(props.params); // Unwrap the params Promise
   const courseId = params.courseId; // Access the courseId

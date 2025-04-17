@@ -13,6 +13,23 @@ interface CourseOptionsProps {
   onChapterCountChange: (chapterCount: number) => void
 }
 
+/**
+ * Component for configuring course options such as difficulty level, duration, 
+ * number of chapters, and whether to include YouTube videos.
+ *
+ * @param {Object} props - The properties for the CourseOptions component.
+ * @param {string} props.difficulty - The selected difficulty level of the course.
+ * @param {string} props.duration - The selected duration of the course.
+ * @param {boolean} props.includeYoutube - Whether to include YouTube videos in the course.
+ * @param {number} props.chapterCount - The number of chapters in the course (1-20).
+ * @param {(value: string) => void} props.onDifficultyChange - Callback for when the difficulty level changes.
+ * @param {(value: string) => void} props.onDurationChange - Callback for when the course duration changes.
+ * @param {(checked: boolean) => void} props.onIncludeYoutubeChange - Callback for when the YouTube inclusion option changes.
+ * @param {(value: number) => void} props.onChapterCountChange - Callback for when the number of chapters changes.
+ * 
+ * @returns {JSX.Element} A form-like UI for selecting course options.
+ */
+
 export function CourseOptions({
   difficulty,
   duration,

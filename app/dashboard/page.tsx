@@ -24,6 +24,54 @@ interface CourseData {
   updatedAt: Date
 }
 
+/**
+ * Dashboard component that displays the user's profile, courses, and other dashboard features.
+ *
+ * @returns {JSX.Element} The rendered dashboard page.
+ *
+ * @remarks
+ * This component fetches the user's courses from a Firestore database and displays them
+ * along with the user's profile information. It also includes options for creating new courses
+ * and viewing existing ones.
+ *
+ * @dependencies
+ * - `useRouter` from `next/router` for navigation.
+ * - `useAuth` for accessing user authentication and data.
+ * - Firestore functions: `collection`, `query`, `where`, `orderBy`, and `getDocs` for fetching data.
+ * - `useState` and `useEffect` from React for managing state and side effects.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * import Dashboard from './dashboard/page';
+ *
+ * export default function App() {
+ *   return <Dashboard />;
+ * }
+ * ```
+ *
+ * @remarks
+ * The component includes the following sections:
+ * - **Player Profile**: Displays the user's profile picture, name, email, and level based on the number of courses created.
+ * - **New Quest**: A call-to-action for creating a new course.
+ * - **Your Inventory**: Displays the user's created courses or a message if no courses exist.
+ * - **Your Courses**: A grid of the user's courses, limited to 4, with an option to view all.
+ * - **Daily Quests**: A list of daily tasks with rewards.
+ *
+ * @state
+ * - `isLoading` (`boolean`): Indicates whether the dashboard is loading.
+ * - `userCourses` (`CourseData[]`): Stores the list of courses created by the user.
+ *
+ * @hooks
+ * - `useEffect`: Fetches the user's courses when the component mounts or when the user changes.
+ *
+ * @errors
+ * - Logs errors to the console if fetching user courses fails.
+ *
+ * @loading
+ * - Displays a loading message while the dashboard data is being fetched.
+ */
+
 export default function Dashboard() {
   const router = useRouter()
   const { user, userData } = useAuth()

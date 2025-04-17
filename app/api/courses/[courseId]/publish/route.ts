@@ -2,6 +2,29 @@ import { type NextRequest, NextResponse } from "next/server";
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
+/**
+ * Handles the publishing of a course by updating its status in the database.
+ *
+ * @param request - The incoming HTTP request object.
+ * @param params - An object containing route parameters, including the `courseId`.
+ * @returns A JSON response indicating the success or failure of the operation.
+ *
+ * @throws Will return a JSON response with an appropriate status code and error message
+ *         in the following cases:
+ *         - If the `userId` is not provided in the request body (400 Bad Request).
+ *         - If the course with the given `courseId` does not exist (404 Not Found).
+ *         - If the `userId` does not match the owner of the course (403 Forbidden).
+ *         - If an unexpected error occurs during the operation (500 Internal Server Error).
+ *
+ * The function performs the following steps:
+ * 1. Extracts the `courseId` from the route parameters.
+ * 2. Parses the request body to retrieve the `userId`.
+ * 3. Validates the existence of the course in the database.
+ * 4. Verifies that the `userId` matches the owner of the course.
+ * 5. Updates the course's status to "published" and sets the `publishedAt` and `updatedAt` timestamps.
+ * 6. Returns a success response with the `courseId` if the operation is successful.
+ */
+
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ courseId: string }> }
